@@ -56,15 +56,30 @@ for bug in os.listdir(bugDir):
         bugDescTags         = pos_tag(bugDescTokens)
         bugDescTags         = filterTags(bugSubjTags)
 
+        #subject to subject
         for bugWord in bugSubjTags:
                 for inputWord in iSubjTags:
-                        if bugWord==inputWord:
+                        if str(bugWord).upper()==str(inputWord).upper():
                             subjMatchValue += 1
-        
+                            break
+        #subject to description
+        for bugWord in bugSubjTags:
+                for inputWord in iDescTags:
+                        if str(bugWord).upper()==str(inputWord).upper():
+                            subjMatchValue += 1
+
+        #description to description
         for bugWord in bugDescTags:
                 for inputWord in iDescTags:
-                        if bugWord==inputWord:
-                                descMatchValue += 1
+                        if str(bugWord).upper()==str(inputWord).upper():
+                            descMatchValue += 1
+                            break
+        #description to subject
+        for bugWord in bugDescTags:
+                for inputWord in iSubjTags:
+                        if str(bugWord).upper()==str(inputWord).upper():
+                            descMatchValue += 1
+                            break
 
         if len(bugSubjTags) != 0:
             subjMatchPercentage = (float(subjMatchValue) / len(bugSubjTags)) * 100.0
