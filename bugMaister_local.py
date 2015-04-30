@@ -5,6 +5,8 @@ from nltk import sent_tokenize, word_tokenize, pos_tag
 reload(sys)
 sys.setdefaultencoding('utf8')
 
+
+# filter keywords by word type
 def filterTags( tagsToFilter ):
         ct       = 0
         toDelete = []
@@ -36,6 +38,8 @@ iDescTokens         = word_tokenize(inputDesc)
 iDescTags           = pos_tag(iDescTokens)
 iDescTags           = filterTags(iDescTags)
 
+#loop through bugs saved locally and
+#compare keywords with input bug
 for bug in os.listdir(bugDir):
         subjMatchValue      = 0
         descMatchValue      = 0
@@ -72,6 +76,7 @@ for bug in os.listdir(bugDir):
         bugMatchValues = bugMatchValues + [(subjMatchPercentage+descMatchPercentage) / 2]
         bugFile.close()
 
+#loop through bugs and output match percentage
 ct = 0
 for bg in bugIds:
         print bg + str(int(bugMatchValues[ct])) + '%'
