@@ -7,6 +7,13 @@ reload(sys)
 sys.setdefaultencoding('utf8')
 
 
+print "                                                                                                  (\.   \      ,/)"
+print "                                                                                                   \(   |\     )/"
+print "    ___   __  _______  _________________ ____________  __  ______   _________________  ____        //\  | \   /\\\\"
+print "   / _ | /  |/  / __/ /_  __/  _/ ___/ //_/ __/_  __/ /  |/  / _ | /  _/ __/_  __/ _ \/ __ \\      (/ /\_#oo#_/\ \)"   
+print "  / __ |/ /|_/ /\ \    / / _/ // /__/ ,< / _/  / /   / /|_/ / __ |_/ /_\ \  / / / , _/ /_/ /       \/\  ####  /\/"
+print " /_/ |_/_/  /_/___/   /_/ /___/\___/_/|_/___/ /_/   /_/  /_/_/ |_/___/___/ /_/ /_/|_|\____/             `##'\n\n"                                                                                                              
+
 # filter keywords by word type
 def filterTags( tagsToFilter ):
         ct       = 0
@@ -24,6 +31,7 @@ def loadTickets():
             result = json.load(result_file)
         return result
 
+percentFilter       = 50
 descSearchString    = "Description:"
 descSearchStringLen = len(descSearchString)
 subjSearchString    = "Subject:"
@@ -98,6 +106,6 @@ for ticket in ticketHistory["result"]:
 #loop through bugs and output match percentage
 ct = 0
 for bg in bugIds:
-        if int(bugMatchValues[ct]) > 80:
+        if int(bugMatchValues[ct]) >= percentFilter:
             print bg + ": " + str(int(bugMatchValues[ct])) + '%'
         ct += 1
